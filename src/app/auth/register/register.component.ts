@@ -64,7 +64,7 @@ export default class RegisterComponent implements OnInit {
       this._authService.register(this.registerForm.value).subscribe(response =>{
         if (response.valid)   {
           this.router.navigate(['/products']);
-          this.toastr.success('Creacion Usuratio!', 'Usuario creado correctamente.!');
+          this.toastr.success('Creación Usuario', 'Usuario creado correctamente.!');
         }
         });
 
@@ -80,6 +80,7 @@ export default class RegisterComponent implements OnInit {
     this._modalSvc.openModal<LoginComponent>(LoginComponent);
   }
 
-  changeTemplate(){}
+
+  
 
 }

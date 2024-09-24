@@ -10,6 +10,7 @@ import { ModalService } from '@shared/modals-dialog/modal.service';
 import { Product } from 'app/core/models/product.interface';
 import { User } from 'app/core/models/user.interface';
 import { ProductService } from 'app/core/services/product.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-product',
@@ -34,11 +35,12 @@ export class CreateProductComponent implements OnInit {
   private readonly  productSvc = inject(ProductService)
 
 
-  createProduForm!: FormGroup;
+  createProductForm!: FormGroup;
   user!:User;
   products!: Product[];
+  product!: Product;
   
-  constructor(){
+  constructor(private toastr: ToastrService){
       
   }
 
@@ -55,23 +57,36 @@ export class CreateProductComponent implements OnInit {
    
 
   private _builForm(): void{
-      this.createProduForm = this._fb.nonNullable.group({
+      this.user = JSON.parse(localStorage.getItem('user') || '{}');
+      this.createProductForm = this._fb.nonNullable.group({
         name: ['',[Validators.required, Validators.min(4)]],
         sku: ['',[Validators.required, Validators.min(4)]],
+        price: ['',[Validators.required, Validators.minLength(1)]],
         quantity: ['',[Validators.required, Validators.minLength(1)]],
-        user: this.user
-        
+        user: {
+          id: this.user.id
+        },
+        category: {
+          id: 1,
+          name: ''
+
+        },    
+               
         
       })
+
+      
   }
 
 
 
   createProduct():void{
     
-    if(this.createProduForm.valid){
-      this.productSvc.createProduct(this.createProduForm.value).subscribe(resp => {
+    if(this.createProductForm.valid){
+      
+      this.productSvc.createProduct(this.createProductForm.value).subscribe(resp => {
         console.log(resp);
+        this.toastr.success('Creación Producto', 'Producto creado correctamente.!');
       });    
       this._modalSvc.closeModal();
       
@@ -80,7 +95,7 @@ export class CreateProductComponent implements OnInit {
 
   closeModal(){
     this._modalSvc.closeModal();
-
+    
   }
 
 

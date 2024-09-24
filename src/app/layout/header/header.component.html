@@ -12,10 +12,21 @@
          rounded text-base mt-4 md:mt-0" mat-button routerLink="/" routerLinkActive="dark:text-green-500"
          [routerLinkActiveOptions]="{exact:true}">Inicio</button>
          
-        <button class="inline-flex items-center
+         @if(!isLoggedIn()){
+          <button class="inline-flex items-center
           border-0 py-1 px-3 focus:outline-none hover:bg-indigo-100 
          rounded text-base mt-4 md:mt-0" mat-button routerLink="login" routerLinkActive="dark:text-green-500"
-         [routerLinkActiveOptions]="{exact:true}" (click)="onpenModalLogin()">Iniciar sesión </button>
+         [routerLinkActiveOptions]="{exact:true}" (click)="onpenModalLogin()"
+         
+         >Iniciar sesión </button>
+          
+         }@else {
+          <p>{{ loggedUserName }}</p>
+
+         }
+        
+
+        
          
          
         

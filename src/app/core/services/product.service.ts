@@ -62,8 +62,8 @@ export class ProductService {
 
   createProduct(produc:Product): Observable<any>{
     this.user = JSON.parse(localStorage.getItem('user') ?? '{}');
-    const token: string | any = localStorage.getItem('token');
-    console.log("USUARIO DESDE CREAR P:"+ this.user.id)
+    //const token: string | any = localStorage.getItem('token');
+    //console.log("USUARIO DESDE CREAR P:"+ this.user.id)
     
 
     const headers = this.getHeader();

@@ -1,8 +1,7 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
-import { loginFailure, loginSuccess, registerFailure, registerSuccess } from './auth.actions';
+import { BehaviorSubject,  Observable, of } from 'rxjs';
 import { environment } from 'environments/environment.development';
 import { Login } from 'app/core/models/login.interface';
 import { User } from 'app/core/models/user.interface';
@@ -43,7 +42,7 @@ import { ROLE_ADMIN } from 'environments/environment';
         return false;
     }
 
-    isAdmin() {
+    isAdmin(): boolean {
         this.user = JSON.parse(localStorage.getItem('user') ?? '{}');
         if( this.user!.role === ROLE_ADMIN){
             return true;

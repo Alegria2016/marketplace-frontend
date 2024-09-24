@@ -23,10 +23,10 @@ export default class HeaderComponent {
 
   private readonly _modalSvc = inject(ModalService)
   storeProducts = inject(StorageService);
+  authService = inject(AuthService);
   
-
-
   userProfile!:User
+  loggedUserName: string | any = localStorage.getItem('user.name');
 
   cart: ProductItemCart[] = [];
   total: number = 0;
@@ -34,6 +34,7 @@ export default class HeaderComponent {
 
   ngOnInit(): void {
    this.getProductStorage();
+   this.isLoggedIn();
   }
 
 
@@ -56,6 +57,11 @@ export default class HeaderComponent {
 }
 
 
+isLoggedIn(){
+  console.log(this.authService.isAuth())
+  return true; //this.authService.isAuth()
+   
+}
 
 
 }
