@@ -1,0 +1,24 @@
+<aside id="logo-sidebar" class="fixed top-0 left-0 z-40 w-64 h-screen pt-20 transition-transform -translate-x-full bg-white border-r border-gray-200 sm:translate-x-0 dark:bg-gray-800 dark:border-gray-700" aria-label="Sidebar">
+    <div class="h-full px-3 pb-4 overflow-y-auto bg-white dark:bg-gray-800">
+<mat-card class="example-result-card">
+    <mat-card-content>
+      <h2>Filtros </h2>
+  
+      <div class="example-label-container">
+        <label id="example-name-label" class="example-name-label">Precio: </label>
+        <label class="example-value-label"> {{slider.value | currency}}</label>
+      </div>
+      <mat-slider
+          class="example-margin"
+          [disabled]="disabled"
+          [max]="max"
+          [min]="min"
+          [step]="step"
+          [discrete]="thumbLabel"
+          [showTickMarks]="showTicks">
+        <input matSliderThumb [(ngModel)]="value" #slider>
+      </mat-slider>
+    </mat-card-content>
+  </mat-card>
+    </div>
+</aside>

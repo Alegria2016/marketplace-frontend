@@ -1,0 +1,27 @@
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>Iniciar sesión</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <form class="form-custom" [formGroup]="loginForm">
+                <mat-form-field class="input-custom">
+                    <mat-label>Correo:</mat-label>
+                    <input matInput formControlName="email" type="email" placeholder="Ex. ejemplo@gmail.com">
+                </mat-form-field><br>
+
+                <mat-form-field class="input-custom">
+                    <mat-label>Contraseña:</mat-label>
+                    <input matInput formControlName="password" type="password">
+                </mat-form-field>
+
+                
+
+            </form>
+        </mat-card-content>
+        <mat-card-actions>
+          <div class="flex">
+            <button [disabled]="!loginForm.valid" mat-raised-button (click)="login()">Iniciar seción</button> <br>
+            <button mat-button (click)="onpenModalRegister()" style="margin-left: 8px;"> Registrarse  </button>
+         </div>
+        </mat-card-actions> 
+      </mat-card>

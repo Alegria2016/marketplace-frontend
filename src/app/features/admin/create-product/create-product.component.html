@@ -1,0 +1,31 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Crear Producto</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form class="form-custom" [formGroup]="createProduForm">
+            <mat-form-field class="input-custom">
+                <mat-label>Nombre del producto:</mat-label>
+                <input matInput formControlName="name" type="text" >
+            </mat-form-field><br>
+
+            <mat-form-field class="input-custom">
+                <mat-label>SKU:</mat-label>
+                <input matInput formControlName="sku" type="text" >
+            </mat-form-field><br>
+
+            <mat-form-field class="input-custom">
+                <mat-label>Cantidad:</mat-label>
+                <input matInput formControlName="quantity" type="number" >
+            </mat-form-field><br>
+
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <div class="flex">
+        <button (click)="closeModal()" mat-button  style="margin-left: 8px;"> Cancelar  </button>
+        <button [disabled]="!createProduForm.valid" mat-raised-button (click)="createProduct()">Crear Producto</button> <br>
+        
+     </div>
+    </mat-card-actions> 
+  </mat-card>
