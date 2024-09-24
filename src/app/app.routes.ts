@@ -10,10 +10,10 @@ export const routes: Routes = [
 
 
     {path: 'dashboard', 
-        loadChildren:() => import('./features/admin/admin.routes').then(r=>r.ADMIN_ROUTES),
         canActivate: [
             isAdmin
-        ]  
+        ], 
+        loadChildren:() => import('./features/admin/admin.routes').then(r=>r.ADMIN_ROUTES) 
     },
    
 

@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatDialogContent, MatDialogModule } from '@angular/material/dialog';
 import { ModalService } from '@shared/modals-dialog/modal.service';
 import LoginComponent from '../login/login.component';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-register',
@@ -35,6 +36,9 @@ export default class RegisterComponent implements OnInit {
 
     registerForm!: FormGroup;
 
+    constructor(private toastr: ToastrService) {}
+
+
 
   
     ngOnInit(): void {
@@ -57,7 +61,13 @@ export default class RegisterComponent implements OnInit {
   
   register(){
     if(this.registerForm.valid){
-      const rest =  this._authService.register(this.registerForm.value)
+      this._authService.register(this.registerForm.value).subscribe(response =>{
+        if (response.valid)   {
+          this.router.navigate(['/products']);
+          this.toastr.success('Creacion Usuratio!', 'Usuario creado correctamente.!');
+        }
+        });
+
       console.log("register req data: ", this.registerForm.value);
       this._modalSvc.closeModal();
     }
